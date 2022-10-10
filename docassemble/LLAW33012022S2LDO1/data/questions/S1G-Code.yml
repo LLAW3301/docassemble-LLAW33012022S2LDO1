@@ -1,0 +1,42 @@
+metadata:
+  title: "Dictionary: gather amendments, values"
+  short title: "Dictionary: gather amendments"
+ # documentation: "https://docassemble.org/docs/groups.html#gathering"
+ # example start: 1
+ # example end: 6
+---
+objects:
+  - amendments: DADict
+---
+#Amendment_written WHERE
+question: |
+  What Article are you going to Amend? 
+fields: 
+  - Article: amendments.new_item_name
+---
+mandatory: True
+question: |
+  There
+  ${ amendments.does_verb("is") }
+  ${ amendments.number_as_word() }
+  amendments in all.
+subquestion: |
+  % for item in amendments:
+  ${ item } 
+  ${ amendments[item]}
+  % endfor
+---
+code: |
+  amendments.there_are_any = True
+---
+question: |
+  What is the article text? 
+fields:
+  - Article Text: amendments[i]
+    datatype: area
+---
+question: |
+  Are there any other Amendments?
+yesno: amendments.there_is_another
+---
+

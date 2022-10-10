@@ -1,0 +1,53 @@
+---
+include:
+  - S1G-DataBlocks.yml
+---
+# Mandatory code block that drives our service directory
+mandatory: True
+code: |
+  S1G_display_welcome_screen
+  
+  S1G_display_final_screen
+--- 
+code: |
+  S1G_display_welcome_screen = True
+  force_ask('S1G_welcome_screen')
+---
+event: S1G_welcome_screen 
+question: Online Drafting Application for the Drafting Office of Jersey.
+subquestion: |
+  
+  This application will write the first draft of amendment orders for the Drafting Office of Jersey. 
+  [SKIPLINE]
+  
+  While this code will produce an Amendment Order Draft, **it will need to be reviewed by at least one Drafting officer**, before publication.    
+  [SKIPLINE]
+ 
+
+buttons:
+ - Continute to Drafting Stage. : continue 
+ - Exit Application. : exit
+   url: https://www.gov.je
+---
+# This is the final screen, which will have a PDF and Word Document download buttons  for Drafter to download the file created in the application. 
+event: S1G_display_final_screen
+question: Finalise First Draft 
+subquestion: |
+  Here are your answers:
+  
+  **Title of order**: ${title_of_order}
+  [SKIPLINE]
+  **Name of who constituted order**: ${constituent_of_order}
+  [SKIPLINE]
+  **Article under which constituted the order**: ${constituent_article}
+  [SKIPLINE]
+  **Date when order was made**: ${date_order_made}
+  [SKIPLINE]
+  **Date when order will come into force**: ${date_order_force} 
+  [SKIPLINE]
+
+
+buttons:
+ - Yes. : continue 
+ - No. : exit
+---

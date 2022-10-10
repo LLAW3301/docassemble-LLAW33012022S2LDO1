@@ -1,0 +1,37 @@
+---
+mandory: True
+question: Please enter the title of the Order.
+subquestion: |
+  Please ensure accurate wording.
+fields:
+ - Document Title: title_of_order
+   datatype: text
+---
+question: Who constituted the Order?
+subquestion: |
+  Please ensure accurate wording.
+fields:
+ - Name: constituent_of_order   
+   datatype: text
+---
+question: Under what Article did they constitute the Order?
+subquestion: |
+  Please ensure accurate wording.
+fields:
+ - Name: constituent_article
+   datatype: text
+---
+question: When was the Order made?
+subquestion: |
+  Please ensure an accurate date.
+fields:
+ - Date: date_order_made
+   datatype: date
+---
+question: When will the Order come into force?
+subquestion: |
+  Please ensure an accurate date.
+fields:
+ - Date: date_order_force
+   datatype: date
+---

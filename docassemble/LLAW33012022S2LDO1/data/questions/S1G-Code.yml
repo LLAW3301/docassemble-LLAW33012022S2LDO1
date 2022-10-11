@@ -8,22 +8,47 @@ metadata:
 objects:
   - amendments: DADict
 ---
-#Amendment_written WHERE
+#Amendment_written WHERE 1
 question: |
-  What Article are you going to Amend? 
+  What type of Amendment are you wanting to write? 
+Subquestion: |
+  Please select the type of Amendment from the dropdown menu. 
+dropdown: 
+  - Addition 
+  - Substitution 
+  - Deletion 
+  continue: amendments.new_item_name
+--- 
+#Amendment_written WHERE 2
+question: |
+  Which Article are you going to amend? 
+Subquestion: |
+  Please enter the 'article' followed by the number of the article and then the subsection's title. 
 fields: 
   - Article: amendments.new_item_name
+help: 
+  label: |
+    More Information
+  content: |
+    The **Article Number** is the placement of the article in the order that is being amended - usally in chronological order. 
+    [SKIPLINE]
+    
+    The **Subsection Title** is the title associated with the article section. 
 ---
+# Turn into Table maybe
 mandatory: True
 question: |
   There
-  ${ amendments.does_verb("is") }
+  ${ amendments.does_verb("are") }
   ${ amendments.number_as_word() }
-  amendments in all.
+  amendments in total.
 subquestion: |
   % for item in amendments:
-  ${ item } 
+  **${ item }** 
+  [SKIPLINE]
   ${ amendments[item]}
+  [SKIPLINE]
+  
   % endfor
 ---
 code: |
@@ -31,6 +56,8 @@ code: |
 ---
 question: |
   What is the article text? 
+Subquestion: |
+  Please write what you would like to say in the Amendment.
 fields:
   - Article Text: amendments[i]
     datatype: area

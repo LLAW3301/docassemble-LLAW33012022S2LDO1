@@ -43,7 +43,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
     return out
 
 setup(name='docassemble.LLAW33012022S2LDO1',
-      version='0.1.1',
+      version='0.1.2',
       description=('A docassemble extension.'),
       long_description='# docassemble.LLAW33012022S2LDO1\r\n\r\nA docassemble extension.\r\n\r\n## Author\r\n\r\nGeorgia Owbridge, owbr0002@flinders.edu.au\r\n\r\n',
       long_description_content_type='text/markdown',

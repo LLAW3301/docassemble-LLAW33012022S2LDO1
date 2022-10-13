@@ -1,13 +1,14 @@
 ---
 include:
   - S1G-DataBlocks.yml
+  - S1G-Code.yml
 ---
 # Mandatory code block that drives our service directory
 mandatory: True
 code: |
   S1G_display_welcome_screen
   
-  S1G_display_final_screen
+  S1G_display_results_screen
 --- 
 code: |
   S1G_display_welcome_screen = True
@@ -25,15 +26,15 @@ subquestion: |
  
 
 buttons:
- - Continute to Drafting Stage. : continue 
+ - Continue to Drafting Stage. : continue 
  - Exit Application. : exit
    url: https://www.gov.je
 ---
-# This is the final screen, which will have a PDF and Word Document download buttons  for Drafter to download the file created in the application. 
-event: S1G_display_final_screen
-question: Finalise First Draft 
+#Displays the results of inputted amendments
+event: S1G_display_results_screen
+question: Automated First Draft Results
 subquestion: |
-  Here are your answers:
+  The inputted amendments are listed below:
   
   **Title of order**: ${title_of_order}
   [SKIPLINE]
@@ -46,8 +47,56 @@ subquestion: |
   **Date when order will come into force**: ${date_order_force} 
   [SKIPLINE]
 
+  % for item in amendments:
+  **${ item }** 
+  [SKIPLINE]
+  [START_INDENTATION]
+  
+  ${ amendments[item]} 
+  
+  [STOP_INDENTATION]
+  [SKIPLINE]
+  
+  % endfor
+attachments:
+  - name: Jersey Order Draft
+    filename: jersey_order_draft
+    metadata:
+      SingleSpacing: True
+      fontsize: 12pt
+      fontfamily: Arial 
+    valid formats:
+      - docx
+      - pdf
+    content: |
 
+      [BOLDCENTER] ${ title_of_order}
+      
+      Order made: *${ date_order_made}*
+      [SKIPLINE]
+      
+      Coming into force: *${ date_order_force}* 
+      [SKIPLINE]
+      
+      **${ constituent_of_order}** makes this order under *${ constituent_article}*
+      [SKIPLINE]
+      
+      ---
+
+      % for item in amendments:
+      **${ item }** 
+      [SKIPLINE]
+      [START_INDENTATION]
+      
+      ${ amendments[item]} 
+      
+      [STOP_INDENTATION]
+      [SKIPLINE]     
+      
+      % endfor
+      
 buttons:
- - Yes. : continue 
- - No. : exit
+ - Restart.: restart
+ - Exit.: exit
+   url: https://www.gov.je
 ---

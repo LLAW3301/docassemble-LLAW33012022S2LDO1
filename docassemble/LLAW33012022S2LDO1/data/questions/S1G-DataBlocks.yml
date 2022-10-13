@@ -1,5 +1,4 @@
 ---
-mandory: True
 question: Please enter the title of the Order.
 subquestion: |
   Please ensure accurate wording.

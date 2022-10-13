@@ -7,17 +7,6 @@ metadata:
 ---
 objects:
   - amendments: DADict
----
-#Amendment_written WHERE 1
-question: |
-  What type of Amendment are you wanting to write? 
-Subquestion: |
-  Please select the type of Amendment from the dropdown menu. 
-dropdown: 
-  - Addition 
-  - Substitution 
-  - Deletion 
-  continue: amendments.new_item_name
 --- 
 #Amendment_written WHERE 2
 question: |
@@ -26,17 +15,8 @@ Subquestion: |
   Please enter the 'article' followed by the number of the article and then the subsection's title. 
 fields: 
   - Article: amendments.new_item_name
-help: 
-  label: |
-    More Information
-  content: |
-    The **Article Number** is the placement of the article in the order that is being amended - usally in chronological order. 
-    [SKIPLINE]
-    
-    The **Subsection Title** is the title associated with the article section. 
 ---
-# Turn into Table maybe
-mandatory: True
+event: display_amendments_screen
 question: |
   There
   ${ amendments.does_verb("are") }
@@ -57,13 +37,29 @@ code: |
 question: |
   What is the article text? 
 Subquestion: |
-  Please write what you would like to say in the Amendment.
+  Please write what you would like to say within this Section.
+  [SKIPLINE]
+ 
+  **Note**: If there is more than one subsection under this Section, please ensure you number the text like so:
+  [SKIPLINE]
+  1.
+  [SKIPLINE]
+  2.
+  [SKIPLINE]
+  3.
+  [SKIPLINE]
 fields:
   - Article Text: amendments[i]
     datatype: area
 ---
 question: |
   Are there any other Amendments?
+subquestion: |
+  If there are any other amendments, please select *‘Yes’*.
+  [SKIPLINE]
+  
+  If there are no other amendments, please select *‘No’*.
+  [SKIPLINE]
 yesno: amendments.there_is_another
 ---
 

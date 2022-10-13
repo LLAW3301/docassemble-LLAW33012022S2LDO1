@@ -78,10 +78,10 @@ attachments:
       Coming into force: *${ date_order_force}* 
       [SKIPLINE]
       
-      **${ constituent_of_order}** makes this order under *${ constituent_article}*
+      ${ constituent_of_order} makes this order under *${ constituent_article}*
       [SKIPLINE]
       
-      ---
+      [BLANKFILL]
 
       % for item in amendments:
       **${ item }** 

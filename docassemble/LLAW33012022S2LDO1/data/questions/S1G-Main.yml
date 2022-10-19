@@ -18,10 +18,10 @@ event: S1G_welcome_screen
 question: Online Drafting Application for the Drafting Office of Jersey.
 subquestion: |
   
-  This application will write the first draft of amendment orders for the Drafting Office of Jersey. 
+  This application will write the First Draft of Amendment Orders for the Drafting Office of Jersey. 
   [SKIPLINE]
   
-  While this code will produce an Amendment Order Draft, **it will need to be reviewed by at least one Drafting officer**, before publication.    
+  While this code will produce an Amendment Order Draft, **it will need to be reviewed by at least one Drafting officer** before publication.    
   [SKIPLINE]
  
 

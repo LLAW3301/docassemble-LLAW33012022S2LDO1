@@ -6,7 +6,7 @@ Subquestion: |
   Please enter the 'article' followed by the number of the article and then the subsection's title. 
 fields: 
   - Article: amendments.new_item_name
-    default: Article 3 - Licence Fee - kennels and catteries
+    default: Article 
 ---
 event: display_amendments_screen
 question: |

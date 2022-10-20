@@ -45,7 +45,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
 setup(name='docassemble.LLAW33012022S2LDO1',
       version='0.1.2',
       description=('A docassemble extension.'),
-      long_description='# docassemble.LLAW33012022S2LDO1\r\n\r\nA docassemble extension.\r\n\r\n## Author\r\n\r\nGeorgia Owbridge, owbr0002@flinders.edu.au\r\nAdarshkumar Kirankumar Parekh, pare0046@flinders.edu.au\r\nMatilda Lindquist, lind0235@flinders.edu.au\r\nYoussef Ibrahim, ibra0103@flinders.edu.au\r\nJack Pantelios, pant0073@flinders.edu.au',
+      long_description='# docassemble.LLAW33012022S2LDO1\r\n\r\nThis application produces the first draft in the amendment process for the Legislative Drafting Office of Jersey. Human inspection is necessary before publication. \r\n\r\n## Author\r\n\r\nGeorgia Owbridge, owbr0002@flinders.edu.au\r\nAdarshkumar Kirankumar Parekh, pare0046@flinders.edu.au\r\nMatilda Lindquist, lind0235@flinders.edu.au\r\nYoussef Ibrahim, ibra0103@flinders.edu.au\r\nJack Pantelios, pant0073@flinders.edu.au',
       long_description_content_type='text/markdown',
       author='Georgia Owbridge',
       author_email='owbr0002@flinders.edu.au',

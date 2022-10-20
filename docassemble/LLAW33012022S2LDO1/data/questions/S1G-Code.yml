@@ -1,20 +1,12 @@
-metadata:
-  title: "Dictionary: gather amendments, values"
-  short title: "Dictionary: gather amendments"
- # documentation: "https://docassemble.org/docs/groups.html#gathering"
- # example start: 1
- # example end: 6
----
-objects:
-  - amendments: DADict
 --- 
-#Amendment_written WHERE 2
+# Amendment article will be written first i.e Article 2 - Subsection title. 
 question: |
   Which Article are you going to amend? 
 Subquestion: |
   Please enter the 'article' followed by the number of the article and then the subsection's title. 
 fields: 
   - Article: amendments.new_item_name
+    default: Article 3 - Licence Fee - kennels and catteries
 ---
 event: display_amendments_screen
 question: |
@@ -34,6 +26,7 @@ subquestion: |
 code: |
   amendments.there_are_any = True
 ---
+# This screen will display a text box for free text that allows the drafter to insert amendments in numbered order if applicable. This will include additional instructions, in the form of a note, that will tell the drafter the number outline if they wish to make more then one amendment to one article/section.  
 question: |
   What is the article text? 
 Subquestion: |
@@ -42,16 +35,17 @@ Subquestion: |
  
   **Note**: If there is more than one subsection under this Section, please ensure you number the text like so:
   [SKIPLINE]
-  1.
+  **1.**
   [SKIPLINE]
-  2.
+  **2.**
   [SKIPLINE]
-  3.
+  **3.**
   [SKIPLINE]
 fields:
   - Article Text: amendments[i]
     datatype: area
 ---
+# This is where the application will ask if any other article amendments need to be made. This will then loop if the answer is YES, if NO then it will continue to final screen. 
 question: |
   Are there any other Amendments?
 subquestion: |

@@ -3,7 +3,17 @@ include:
   - S1G-DataBlocks.yml
   - S1G-Code.yml
 ---
-# Mandatory code block that drives our service directory
+metadata:
+  title: "Legislative Drafting Office of Jersey Order Drafting Application"
+  short title: "Order Drafting Application"
+  authors:
+    - name: Georgia Owbridge, Adarsh Parekh, Youssef Ibrahim, Matilda Linquist, Jack Pantelios. 
+      organization: College of Business, Government and Law at Flinders University.  
+  revision_date: 2022-10-20
+  logo: |
+    [FILE LDOlogo(2).jpg, 50px] 
+---
+# Mandatory code block that drives our service directory. 
 mandatory: True
 code: |
   S1G_display_welcome_screen
@@ -13,6 +23,16 @@ code: |
 code: |
   S1G_display_welcome_screen = True
   force_ask('S1G_welcome_screen')
+--- 
+objects: 
+  - LDOlogo: DAStaticFile.using(filename='LDOlogo(2).jpg')
+  - amendments: DADict
+
+---
+features:
+  css: Banner.css
+  debug: False
+  hide standard menu: True
 ---
 event: S1G_welcome_screen 
 question: Online Drafting Application for the Drafting Office of Jersey.
@@ -21,7 +41,7 @@ subquestion: |
   This application will write the first draft of amendment orders for the Drafting Office of Jersey. 
   [SKIPLINE]
   
-  While this code will produce an Amendment Order Draft, **it will need to be reviewed by at least one Drafting officer**, before publication.    
+  When this code produces an amendment order draft **it will need to be reviewed by at least one drafting officer** before publication.    
   [SKIPLINE]
  
 
@@ -29,8 +49,30 @@ buttons:
  - Continue to Drafting Stage. : continue 
  - Exit Application. : exit
    url: https://www.gov.je
+
+default screen parts:
+  post: |
+
+    <div style="display: flex; height: 200px; align-items: flex-end; flex-direction: row-reverse">
+
+    <div style="margin: 5px"><img src="https://staff.flinders.edu.au/etc.clientlibs/flinders/clientlibs/clientlib-site/resources/images/flinderuni_main_logo_black.png" height="40">
+
+    </div>
+
+    <div style="margin: 5px; text-align: right">
+
+    <cite><small><i>
+
+    Developed by Flinders University in collaboration with the Legislative Drafting Office of Jersey. 
+
+    </i></small></cite>
+
+    </div>
+
+    </div>
+   
 ---
-#Displays the results of inputted amendments
+# Displays the results of inputted amendments, in a clear way to show the drafter what data has been collected and will be displayed on the downloadable PDF file. 
 event: S1G_display_results_screen
 question: Automated First Draft Results
 subquestion: |
@@ -59,41 +101,11 @@ subquestion: |
   
   % endfor
 attachments:
-  - name: Jersey Order Draft
-    filename: jersey_order_draft
-    metadata:
-      SingleSpacing: True
-      fontsize: 12pt
-      fontfamily: Arial 
-    valid formats:
+   valid formats:
       - docx
       - pdf
-    content: |
+   docx template file: Amendment_Draft_Template.docx
 
-      [BOLDCENTER] ${ title_of_order}
-      
-      Order made: *${ date_order_made}*
-      [SKIPLINE]
-      
-      Coming into force: *${ date_order_force}* 
-      [SKIPLINE]
-      
-      ${ constituent_of_order} makes this order under *${ constituent_article}*
-      [SKIPLINE]
-      
-      [BLANKFILL]
-
-      % for item in amendments:
-      **${ item }** 
-      [SKIPLINE]
-      [START_INDENTATION]
-      
-      ${ amendments[item]} 
-      
-      [STOP_INDENTATION]
-      [SKIPLINE]     
-      
-      % endfor
       
 buttons:
  - Restart.: restart

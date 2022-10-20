@@ -1,6 +1,6 @@
 # docassemble.LLAW33012022S2LDO1
 
-A docassemble extension.
+This application produces the first draft in the amendment process for the Legislative Drafting Office of Jersey. Human inspection is necessary before publication. 
 
 ## Author
 

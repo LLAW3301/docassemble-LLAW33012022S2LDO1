@@ -6,7 +6,6 @@ subquestion: |
 fields:
  - Document Title: title_of_order
    datatype: text
-   default: ANIMAL WELFARE (LICENCE FEE) (JERSEY) ORDER 2022 (DRAFT)
 ---
 question: Who constituted the Order?
 subquestion: |
@@ -14,7 +13,6 @@ subquestion: |
 fields:
  - Name: constituent_of_order   
    datatype: text
-   default: THE MINISTER FOR PLANNING AND ENVIRONMENT
 ---
 question: Under what Article did they constitute the Order?
 subquestion: |
@@ -22,7 +20,6 @@ subquestion: |
 fields:
  - Name: constituent_article
    datatype: text
-   default: Articles 17(1)(c) and 41 of the Animal Welfare (Jersey) Law 2004.
 ---
 question: When was the Order made?
 subquestion: |
@@ -30,7 +27,6 @@ subquestion: |
 fields:
  - Date: date_order_made
    datatype: date
-   default: 11/03/22
 ---
 question: When will the Order come into force?
 subquestion: |
@@ -38,5 +34,4 @@ subquestion: |
 fields:
  - Date: date_order_force
    datatype: date
-   default: 11/05/22
 ---

@@ -1,37 +1,52 @@
 # This is the data block that will ask the drafter the information used in the header of the draft order. This will include information such as the date it was drafted, the person that constituted the order, the title and so forth. 
 ---
-question: Please enter the title of the Order.
+question: Please enter the Title of the Order
 subquestion: |
-  Please ensure accurate wording.
+  Please ensure accurate wording. 
+  [SKIPLINE]
+  [SKIPLINE]
+  **NOTE** : If this is an ammending order, please ensure the amendment number is included in the Title of the Order. 
 fields:
- - Document Title: title_of_order
+ - Title of Order:: title_of_order
+   datatype: text
+ - Drafting Year of Order:: title_year
+   datatype: integer 
+---
+question: Please select the relevant Minister who makes this Order?
+subquestion: |
+  Please select from the following list of Ministers. 
+  [SKIPLINE]
+  [SKIPLINE]
+  **NOTE** : If selecting the 'other' opinion - please write the Ministers department  in the textbox provided. 
+fields:
+  - Minister: constituent_of_order
+    choices:
+      - Chief Minister
+      - Minister for International Development
+      - Minister for Economic Development, Tourism, Sport and Culture
+      - Minister for Children and Education
+      - Minister for External Relations and Financial Services
+      - Minister for Health and Social Services
+      - Minister for Home Affairs
+      - Minister for Housing and Communities
+      - Minister for the Environment
+      - Minister for Social Security
+      - Minister for Infrastructure
+      - Minister for Treasury and Resources
+      - Other
+  - Other Minister: constituent_of_order
+    show if:
+      variable: constituent_of_order
+      is: Other
+---
+question: Under what Legislation and Article/Articles does the Minister make the Order?
+subquestion: |
+  Implement values to match the following sequence structure. 
+  [SKIPLINE]
+  I.E. Minster for X make this Order under Article X of the X Legislation. 
+fields:
+ - Legislation Article is made under:: constituent_article_number
+ - Legislation:: constituent_article
    datatype: text
 ---
-question: Who constituted the Order?
-subquestion: |
-  Please ensure accurate wording.
-fields:
- - Name: constituent_of_order   
-   datatype: text
----
-question: Under what Article did they constitute the Order?
-subquestion: |
-  Please ensure accurate wording.
-fields:
- - Name: constituent_article
-   datatype: text
----
-question: When was the Order made?
-subquestion: |
-  Please ensure an accurate date.
-fields:
- - Date: date_order_made
-   datatype: date
----
-question: When will the Order come into force?
-subquestion: |
-  Please ensure an accurate date.
-fields:
- - Date: date_order_force
-   datatype: date
----
+

@@ -1,12 +1,33 @@
 --- 
 # Amendment article will be written first i.e Article 2 - Subsection title. 
 question: |
-  Which Article are you going to amend? 
+  What is the title of the Article?  
 Subquestion: |
-  Please enter the 'article' followed by the number of the article and then the subsection's title. 
+  Please copy the appropriate sentsentence depending on whether you are ammending, substituting, deleting or inserting to the Article. 
+  [SKIPLINE]
+  [SKIPLINE]
+  **Article Amending**
+  [SKIPLINE]
+  Article X (title) amended
+  [SKIPLINE]
+  [SKIPLINE]
+  **Substitution to Article**
+  [SKIPLINE]
+  Article X (title) substituted
+  [SKIPLINE]
+  [SKIPLINE]
+  **Removal of Whole Article**
+  [SKIPLINE]
+  Article X (title) deleted
+  [SKIPLINE]
+  [SKIPLINE]
+  **Insertion to Article**
+  [SKIPLINE]
+  Article X (title) inserted
+  
 fields: 
-  - Article: amendments.new_item_name
-    default: Article 
+  - Title of Article: amendments.new_item_name
+    datatype: text
 ---
 event: display_amendments_screen
 question: |
@@ -20,7 +41,6 @@ subquestion: |
   [SKIPLINE]
   ${ amendments[item]}
   [SKIPLINE]
-  
   % endfor
 ---
 code: |
@@ -28,19 +48,38 @@ code: |
 ---
 # This screen will display a text box for free text that allows the drafter to insert amendments in numbered order if applicable. This will include additional instructions, in the form of a note, that will tell the drafter the number outline if they wish to make more then one amendment to one article/section.  
 question: |
-  What is the article text? 
+  What kind of modification would you like the Article to make?   
 Subquestion: |
-  Please write what you would like to say within this Section.
+  Please select from the following options depending on whether you are ammending, substituting, deleting or inserting.  
   [SKIPLINE]
- 
-  **Note**: If there is more than one subsection under this Section, please ensure you number the text like so:
+  **Ammending Article**
   [SKIPLINE]
-  **1.**
+  In article X -
   [SKIPLINE]
-  **2.**
+  (a) for "Original Text" there is substituted "New Text"
   [SKIPLINE]
-  **3.**
   [SKIPLINE]
+  **Subsitiuted Article**
+  [SKIPLINE]
+  For Article X there is substituted -
+  [SKIPLINE]
+  "X (title article)
+  [SKIPLINE]
+  (1) Text imput
+  [SKIPLINE]
+  [SKIPLINE]
+  **Deleted Article**
+  [SKIPLINE]
+  Article X  is deleted. 
+  [SKIPLINE]
+  [SKIPLINE]
+  **Inserting new Article**
+  [SKIPLINE]
+  For Article X there is inserted -
+  [SKIPLINE]
+  "X (title article)
+  [SKIPLINE] 
+
 fields:
   - Article Text: amendments[i]
     datatype: area

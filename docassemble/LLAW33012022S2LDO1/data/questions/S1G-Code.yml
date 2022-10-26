@@ -1,33 +1,42 @@
---- 
-# Amendment article will be written first i.e Article 2 - Subsection title. 
+---
 question: |
-  What is the title of the Article?  
-Subquestion: |
-  Please copy the appropriate sentsentence depending on whether you are ammending, substituting, deleting or inserting to the Article. 
-  [SKIPLINE]
-  [SKIPLINE]
-  **Article Amending**
-  [SKIPLINE]
-  Article X (title) amended
-  [SKIPLINE]
-  [SKIPLINE]
-  **Substitution to Article**
-  [SKIPLINE]
-  Article X (title) substituted
-  [SKIPLINE]
-  [SKIPLINE]
-  **Removal of Whole Article**
-  [SKIPLINE]
-  Article X (title) deleted
-  [SKIPLINE]
-  [SKIPLINE]
-  **Insertion to Article**
-  [SKIPLINE]
-  Article X (title) inserted
-  
-fields: 
-  - Title of Article: amendments.new_item_name
-    datatype: text
+  Please enter the type of Article for the ${ ordinal(i) } Article. 
+fields:
+  - Amendment Type: amendments[i].name.type
+    input type: dropdown
+    choices:
+      - Amend
+      - Substitute
+      - Delete
+      - Insert
+---
+code: |
+  if amendments[i].name.type == "Amend": 
+    amendments[i].name.title_default = 'Article X (title) amended'
+    amendments[i].name.article_default = "In article X - (a) for 'Original Text' there is substituted 'New Text' " 
+  elif amendments[i].name.type == "Substitute": 
+    amendments[i].name.title_default  = 'Article X (title) substituted'
+    amendments[i].name.article_default =  " For Article X there is substituted - 'X (title article)' (1) Text imput." 
+  elif amendments[i].name.type == "Delete": 
+    amendments[i].name.title_default   = 'Article X  is deleted'
+    amendments[i].name.article_default = " Article X  is deleted."
+  elif amendments[i].name.type == "Insert": 
+    amendments[i].name.title_default  = 'Article X (title) inserted'
+    amendments[i].name.article_default = " For Article X there is inserted - 'X (title article)'" 
+  else: 
+    amendments[i].name.title_default = ''
+    amendments[i].name.article_default = ''
+---
+question: |
+  Please enter the article title and text
+fields:
+  - Article Title: amendments[i].name.title
+    default: |
+      ${amendments[i].name.title_default} 
+  - Article Text: amendments[i].name.text
+    input type: area
+    default: |
+      ${amendments[i].name.article_default}
 ---
 event: display_amendments_screen
 question: |
@@ -42,47 +51,6 @@ subquestion: |
   ${ amendments[item]}
   [SKIPLINE]
   % endfor
----
-code: |
-  amendments.there_are_any = True
----
-# This screen will display a text box for free text that allows the drafter to insert amendments in numbered order if applicable. This will include additional instructions, in the form of a note, that will tell the drafter the number outline if they wish to make more then one amendment to one article/section.  
-question: |
-  What kind of modification would you like the Article to make?   
-Subquestion: |
-  Please select from the following options depending on whether you are ammending, substituting, deleting or inserting.  
-  [SKIPLINE]
-  **Ammending Article**
-  [SKIPLINE]
-  In article X -
-  [SKIPLINE]
-  (a) for "Original Text" there is substituted "New Text"
-  [SKIPLINE]
-  [SKIPLINE]
-  **Subsitiuted Article**
-  [SKIPLINE]
-  For Article X there is substituted -
-  [SKIPLINE]
-  "X (title article)
-  [SKIPLINE]
-  (1) Text imput
-  [SKIPLINE]
-  [SKIPLINE]
-  **Deleted Article**
-  [SKIPLINE]
-  Article X  is deleted. 
-  [SKIPLINE]
-  [SKIPLINE]
-  **Inserting new Article**
-  [SKIPLINE]
-  For Article X there is inserted -
-  [SKIPLINE]
-  "X (title article)
-  [SKIPLINE] 
-
-fields:
-  - Article Text: amendments[i]
-    datatype: area
 ---
 # This is where the application will ask if any other article amendments need to be made. This will then loop if the answer is YES, if NO then it will continue to final screen. 
 question: |

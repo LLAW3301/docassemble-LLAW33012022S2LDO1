@@ -17,7 +17,7 @@ include:
 ---
 objects:
  LDOlogo: DAStaticFile.using(filename='LDO1.jpg')
- amendments: DADict
+ amendments: DAList.using(object_type=Thing, there_are_any=True)
 ---
 mandatory: True
 code: |
@@ -46,7 +46,7 @@ code: |
 ---
 #use css file
 features:
-  css: Banner.css
+  css: Banner_2.css
   debug: False
   hide standard menu: True
   question back button: True
@@ -81,16 +81,11 @@ subquestion: |
   **Article which the order was made**: ${constituent_article_number}
   [SKIPLINE]
   
-  % for item in amendments:
-  **${ item }** 
+  %for amendment in amendments:
+  **${amendment.name.title}**
   [SKIPLINE]
-  [START_INDENTATION]
+  %endfor
   
-  ${ amendments[item]} 
-  
-  [STOP_INDENTATION]
-  [SKIPLINE]  
-  % endfor
 attachments:
    valid formats:
       - docx

@@ -4,12 +4,13 @@ subquestion: |
   Please select from the dropdown menu the type of article you are inserting into the order. 
   [SKIPLINE]
 fields:
- - Article Type: amendments.new_item_name
-   choices:
-     - amend
-     - substitution
-     - deletion 
-     - insertion 
+  - "type": amendments.new_item_name
+    datatype: checkbox
+    choices: 
+       - amend
+       - substitution
+       - deletion
+       - insertion
 --- 
 code: |
   if amendments.new_item_name == "amend": 
@@ -17,7 +18,7 @@ code: |
     article_default = "In article X - (a) for 'Original Text' there is substituted 'New Text' " 
   elif amendments.new_item_name == "substitution": 
     title_default  = 'Article X (title) substituted'
-    article_default =  " For Article X there is substituted - 'X (title article)' (1) Text imput." 
+    article_default =  " For Article X there is substituted - 'X (title article)' (1) Text input." 
   elif amendments.new_item_name == "deletion": 
     title_default   = 'Article X  is deleted'
     article_default = " Article X  is deleted."

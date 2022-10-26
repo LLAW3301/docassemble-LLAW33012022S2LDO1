@@ -6,6 +6,7 @@ subquestion: |
   [SKIPLINE]
   [SKIPLINE]
   **NOTE** : If this is an ammending order, please ensure the amendment number is included in the Title of the Order. 
+  [SKIPLINE]
 fields:
  - Title of Order:: title_of_order
    datatype: text
@@ -17,7 +18,8 @@ subquestion: |
   Please select from the following list of Ministers. 
   [SKIPLINE]
   [SKIPLINE]
-  **NOTE** : If selecting the 'other' opinion - please write the Ministers department  in the textbox provided. 
+  **NOTE** : If selecting the 'other' opinion - please write the Ministers department  in the textbox provided.
+  [SKIPLINE]
 fields:
   - Minister: constituent_of_order
     choices:
@@ -43,10 +45,22 @@ question: Under what Legislation and Article/Articles does the Minister make the
 subquestion: |
   Implement values to match the following sequence structure. 
   [SKIPLINE]
-  I.E. Minster for X make this Order under Article X of the X Legislation. 
+  [SKIPLINE]
+  I.E. *Minster for X make this Order under Article X of the X Legislation.* 
+  [SKIPLINE]
 fields:
  - Legislation Article is made under:: constituent_article_number
  - Legislation:: constituent_article
    datatype: text
 ---
-
+question: When does the order come into force?  
+subquestion: |
+  Please select the commencement date of this order. 
+  [SKIPLINE]
+fields: 
+ - Commencement date: commencement_date
+   input type: radio
+   choices: 
+     - On the commencement of the Title of Order: title_of_order
+     - 7 days days after it is made: seven_days    
+---

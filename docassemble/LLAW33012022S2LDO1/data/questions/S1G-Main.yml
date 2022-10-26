@@ -72,15 +72,13 @@ question: Document Results
 subquestion: |
   The inputted amendments are listed below:
   
-  **Title of order**: ${title_of_order} (JERSEY) ORDER ${title_year}
+  **Title of order**: ${title_of_order}
   [SKIPLINE]
-  **Name of person who makes order**: ${constituent_of_order}
+  **Name of who constituted order**: ${constituent_of_order}
   [SKIPLINE]
-  **Legislation which the order was made**: ${constituent_article}
+  **Article under which constituted the order**: ${constituent_article}
   [SKIPLINE]
-  **Article which the order was made**: ${constituent_article_number}
-  [SKIPLINE]
-  
+
   % for item in amendments:
   **${ item }** 
   [SKIPLINE]
@@ -89,15 +87,18 @@ subquestion: |
   ${ amendments[item]} 
   
   [STOP_INDENTATION]
-  [SKIPLINE]  
+  [SKIPLINE]
+  
   % endfor
 attachments:
    valid formats:
       - docx
       - pdf
    docx template file: AmendmentDraft_Template.docx
+
+      
 buttons:
- - Restart: restart
- - Exit: exit
+ - Restart.: restart
+ - Exit.: exit
    url: https://www.gov.je
 ---

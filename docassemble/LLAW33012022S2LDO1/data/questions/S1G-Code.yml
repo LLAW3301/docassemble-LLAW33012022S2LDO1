@@ -6,22 +6,22 @@ subquestion: |
 fields:
  - Article Type: amendments.new_item_name
    choices:
-     - Amend
-     - Substitution
-     - Deletion 
-     - Insertion 
+     - amend
+     - substitution
+     - deletion 
+     - insertion 
 --- 
 code: |
-  if amendments.new_item_name == "Amend": 
+  if amendments.new_item_name == "amend": 
     title_default = 'Article X (title) amended'
     article_default = "In article X - (a) for 'Original Text' there is substituted 'New Text' " 
-  elif amendments.new_item_name == "Substitution": 
+  elif amendments.new_item_name == "substitution": 
     title_default  = 'Article X (title) substituted'
     article_default =  " For Article X there is substituted - 'X (title article)' (1) Text imput." 
-  elif amendments.new_item_name == "Deletion": 
+  elif amendments.new_item_name == "deletion": 
     title_default   = 'Article X  is deleted'
     article_default = " Article X  is deleted."
-  elif amendments.new_item_name == "Insertion": 
+  elif amendments.new_item_name == "insertion": 
     title_default  = 'Article X (title) inserted'
     article_default = " For Article X there is inserted - 'X (title article)'" 
   else: 
@@ -30,7 +30,7 @@ code: |
 # Amendment article will be written first i.e Article 2 - Subsection title. 
 question: What is the title of the Article? 
 subquestion: |
-  Please edit the default value to aline with the informaiton you wish to enter into the order. 
+  Please edit the default value to aline with the information you wish to enter into the order. 
   [SKIPLINE]
 fields: 
   - Title of Article: amendments.title
@@ -63,7 +63,7 @@ code: |
 ---
 # This is where the application will ask if any other article amendments need to be made. This will then loop if the answer is YES, if NO then it will continue to final screen. 
 question: |
-  Are there any other Amendments?
+  Are there any other amendments?
 subquestion: |
   If there are any other amendments, please select *‘Yes’*.
   [SKIPLINE]

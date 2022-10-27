@@ -1,53 +1,100 @@
+default screen parts:
+  post: |
+    <div style="display: flex; height: 200px; align-items: flex-end; flex-direction: row-reverse">
+    <div style="margin: 5px"><img src="https://staff.flinders.edu.au/etc.clientlibs/flinders/clientlibs/clientlib-site/resources/images/flinderuni_main_logo_black.png" height="40">
+    </div>
+    <div style="margin: 5px; text-align: right">
+    <cite><small><i>
+    Developed by Flinders University in collaboration with the Legislative Drafting Office of Jersey. 
+    </i></small></cite>
+    </div>
+    </div> 
 ---
+#include data blocks
 include:
   - S1G-DataBlocks.yml
+  - S1G-Code.yml
 ---
-# Mandatory code block that drives our service directory
+objects:
+ LDOlogo: DAStaticFile.using(filename='LDO1.jpg')
+ amendments: DAList.using(object_type=Thing, there_are_any=True)
+---
+mandatory: True
+code: |
+  set_parts(logo='<img src="' + LDOlogo.url_for() + '"style="height: 70px;">')
+---
+#metadata required
+metadata:
+  title: "First Draft Generator for the Legislative Drafting Office Government of Jersey"
+  short title: "Order Drafting Application"
+  authors:
+    - name: Georgia Owbridge, Adarsh Parekh, Youssef Ibrahim, Matilda Linquist, Jack Pantelios. 
+      organization: College of Business, Government and Law at Flinders University.  
+  revision_date: 2022-10-20 
+  logo: 
+---
+# Mandatory code block that drives our service directory. 
 mandatory: True
 code: |
   S1G_display_welcome_screen
   
-  S1G_display_final_screen
+  S1G_display_results_screen
 --- 
 code: |
   S1G_display_welcome_screen = True
   force_ask('S1G_welcome_screen')
 ---
+#use css file
+features:
+  css: Banner_2.css
+  debug: False
+  hide standard menu: True
+  question back button: True
+  navigation back button: False 
+---
 event: S1G_welcome_screen 
-question: Online Drafting Application for the Drafting Office of Jersey.
+question: First Draft Generator for the Legislative Drafting Office Government of Jersey
 subquestion: |
   
-  This application will write the first draft of amendment orders for the Drafting Office of Jersey. 
+  This application will produce the first draft of commencing Jersey Orders. 
   [SKIPLINE]
   
-  While this code will produce an Amendment Order Draft, **it will need to be reviewed by at least one Drafting officer**, before publication.    
+  **Note:** It is required the drafting officer reviews the generated first draft before proceeding in the drafting process and initiating consideration.     
   [SKIPLINE]
- 
-
 buttons:
- - Continute to Drafting Stage. : continue 
- - Exit Application. : exit
+ - Continue to Drafting Stage : continue 
+ - Exit Application : exit
    url: https://www.gov.je
 ---
-# This is the final screen, which will have a PDF and Word Document download buttons  for Drafter to download the file created in the application. 
-event: S1G_display_final_screen
-question: Finalise First Draft 
+# Displays the results of inputted amendments, in a clear way to show the drafter what data has been collected and will be displayed on the downloadable PDF file. 
+event: S1G_display_results_screen
+question: Drafting Document Results
 subquestion: |
-  Here are your answers:
+  The inputted amendments are listed below:
   
-  **Title of order**: ${title_of_order}
+  **Title of order**: ${title_of_order} (JERSEY) ORDER ${title_year}
   [SKIPLINE]
-  **Name of who constituted order**: ${constituent_of_order}
+  **Name of person who makes order**: ${constituent_of_order}
   [SKIPLINE]
-  **Article under which constituted the order**: ${constituent_article}
+  **Legislation which the order was made**: ${constituent_article}
   [SKIPLINE]
-  **Date when order was made**: ${date_order_made}
+  **Article which the order was made**: ${constituent_article_number}
   [SKIPLINE]
-  **Date when order will come into force**: ${date_order_force} 
+  
+  %for amendment in amendments:
+  **${amendment.name.title}**
   [SKIPLINE]
-
+  [SKIPLINE]
+  %endfor
+  
+attachments:
+   valid formats:
+      - docx
+      - pdf
+   docx template file: AmendmentDraft_Template.docx
 
 buttons:
- - Yes. : continue 
- - No. : exit
+ - Restart : restart
+ - Exit : exit
+   url: https://www.gov.je
 ---

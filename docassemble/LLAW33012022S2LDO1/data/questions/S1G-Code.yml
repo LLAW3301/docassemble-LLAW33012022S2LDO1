@@ -1,42 +1,71 @@
-metadata:
-  title: "Dictionary: gather amendments, values"
-  short title: "Dictionary: gather amendments"
- # documentation: "https://docassemble.org/docs/groups.html#gathering"
- # example start: 1
- # example end: 6
 ---
-objects:
-  - amendments: DADict
----
-#Amendment_written WHERE
 question: |
-  What Article are you going to Amend? 
-fields: 
-  - Article: amendments.new_item_name
----
-mandatory: True
-question: |
-  There
-  ${ amendments.does_verb("is") }
-  ${ amendments.number_as_word() }
-  amendments in all.
+  Amended Article 
 subquestion: |
-  % for item in amendments:
-  ${ item } 
-  ${ amendments[item]}
-  % endfor
+  Please define article type using the dropdown menu. 
+fields:
+  - Amendment Type: amendments[i].name.type
+    input type: dropdown
+    choices:
+      - Amend
+      - Substitute
+      - Delete
+      - Insert
 ---
 code: |
-  amendments.there_are_any = True
+  if amendments[i].name.type == "Amend": 
+    amendments[i].name.title_default = 'Article X (title) amended'
+    amendments[i].name.article_default = "In article X - (a) for 'Original Text' there is substituted 'New Text'. " 
+  elif amendments[i].name.type == "Substitute": 
+    amendments[i].name.title_default  = 'Article X (title) substituted'
+    amendments[i].name.article_default =  " For Article X there is substituted - 'X (title article)' (1) Text imput." 
+  elif amendments[i].name.type == "Delete": 
+    amendments[i].name.title_default   = 'Article X  is deleted'
+    amendments[i].name.article_default = " Article X  is deleted."
+  elif amendments[i].name.type == "Insert": 
+    amendments[i].name.title_default  = 'Article X (title) inserted'
+    amendments[i].name.article_default = " For Article X there is inserted - 'X (title article)'." 
+  else: 
+    amendments[i].name.title_default = ''
+    amendments[i].name.article_default = ''
 ---
 question: |
-  What is the article text? 
+  Amended Article Title and Text
+subquestion: | 
+  Please use the prefill values to complete the amendment.   
 fields:
-  - Article Text: amendments[i]
-    datatype: area
+  - Article Title: amendments[i].name.title
+    default: |
+      ${amendments[i].name.title_default} 
+  - Article Text: amendments[i].name.text
+    input type: area
+    default: |
+      ${amendments[i].name.article_default}
 ---
+event: display_amendments_screen
+question: |
+  There
+  ${ amendments.does_verb("are") }
+  ${ amendments.number_as_word() }
+  amendments in total.
+subquestion: |
+  % for item in amendments:
+  **${ item }** 
+  [SKIPLINE]
+  ${ amendments[item]}
+  [SKIPLINE]
+  [SKIPLINE]
+  % endfor
+---
+# This is where the application will ask if any other article amendments need to be made. This will then loop if the answer is YES, if NO then it will continue to final screen. 
 question: |
   Are there any other Amendments?
+subquestion: |
+  If there are any other amendments, please select *‘Yes’*.
+  [SKIPLINE]
+  
+  If there are no other amendments, please select *‘No’*.
+  [SKIPLINE]
 yesno: amendments.there_is_another
 ---
 

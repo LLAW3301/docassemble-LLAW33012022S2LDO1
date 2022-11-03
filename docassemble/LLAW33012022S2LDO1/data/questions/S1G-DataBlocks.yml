@@ -9,8 +9,10 @@ subquestion: |
 fields:
  - Title of Order:: title_of_order
    datatype: text
+   default: Animal Welfare (Licence fee) (Amendment) 
  - Drafting Year of Order:: title_year
    datatype: integer 
+   default: 2022
 ---
 question: Minister who makes this Order 
 subquestion: |
@@ -48,8 +50,10 @@ subquestion: |
  
 fields:
  - Legislation Article Title:: constituent_article_number
+   default: Articles 17(1)(c) and 41
  - Legislation Title:: constituent_article
    datatype: text
+   default: Animal Welfare (Jesery) Law 2004
 ---
 question: Citation and Commencement provision of Order  
 subquestion: |
